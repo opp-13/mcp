@@ -62,11 +62,14 @@ for file_path in changed_files:
         # 1줄로 변환
         one_line = re.sub(r'\n\s*', '; ', content.strip())
         one_line = re.sub(r';\s*;', ';', one_line)
+        one_line = re.sub(r';\s*;+', ';', one_line)
+        one_line = re.sub(r'^;+|;+$', '', one_line)
 
         print(f"🔄 Processing: {file_path}")
 
         # Bedrock Agent 호출
-        payload = json.dumps({"prompt": one_line}).encode()
+        prompt_json = {"prompt": one_line}
+        payload = json.dumps(prompt_json, ensure_ascii=False, separators=(',', ':'))
 
         print(payload)
 
