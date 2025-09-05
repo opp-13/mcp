@@ -15,7 +15,7 @@ def create_dev_bucket():
         Bucket=bucket_name,
         Tagging={
             'TagSet': [
-                {'Key': 'Environment', 'Value': 'Development'}, 
+                {'Key': 'Environment', 'Value': 'Development'},
                 {'Key': 'CreatedBy', 'Value': 'GitHubActions'},
                 {'Key': 'CreatedDate', 'Value': datetime.now().strftime('%Y-%m-%d')}
             ]
