@@ -61,7 +61,6 @@ for file_path in changed_files:
 
         # 1줄로 변환
         one_line = re.sub(r'\n\s*', '; ', content.strip())
-        one_line = re.sub(r';\s*;', ';', one_line)
         one_line = re.sub(r';\s*;+', ';', one_line)
         one_line = re.sub(r'^;+|;+$', '', one_line)
 
