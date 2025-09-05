@@ -2,7 +2,7 @@ name: Execute Python Code via Bedrock Agent
 
 on:
   push:
-    paths: ['/dev/**/*.py']
+    paths: ['dev/**/*.py']
     branches: [main]
 
 jobs:
@@ -20,4 +20,4 @@ jobs:
           AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
           AGENT_ARN: ${{ secrets.BEDROCK_AGENT_ARN }}
           SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-        run: python execute_code.py
+        run: python .github/scripts/execute_code.py
