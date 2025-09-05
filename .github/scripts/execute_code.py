@@ -67,6 +67,9 @@ for file_path in changed_files:
 
         # Bedrock Agent 호출
         payload = json.dumps({"prompt": one_line}).encode()
+
+        print(payload)
+
         response = agent_core_client.invoke_agent_runtime(
             agentRuntimeArn=agent_arn,
             payload=payload
