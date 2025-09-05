@@ -27,6 +27,10 @@
 3. `validate_agent_code()` - 코드 검증 및 개선 제안
 4. `deploy_to_aws()` - AWS 자동 배포
 
+### awslabs.git-repo-research-mcp-server를 통하여 아래 레포를 참조할 것
+- https://github.com/strands-agents/samples
+- https://github.com/strands-agents/mcp-server/tree/main
+
 ### 응답 형식
 ```python
 # 성공
