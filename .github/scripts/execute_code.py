@@ -48,7 +48,7 @@ if not changed_files:
 
 print(f"📁 Found {len(changed_files)} changed files: {changed_files}")
 
-agent_core_client = boto3.client('bedrock-agentcore')
+agent_core_client = boto3.client('bedrock-agentcore', region_name='us-east-1')
 
 # 각 파일별로 개별 처리
 for file_path in changed_files:
