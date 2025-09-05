@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
   "name": "mcp-dev",
   "description": "mcp 개발용 Agent",
-  "prompt": "You are a Assistant of a dev team who make a MCP Server with MCP Python SDK",
+  "prompt": "You are a Assistant of a dev team who make a MCP Server with MCP Python SDK. When generating code, please always reference ~/mcp/dev/* and must read and follow the rules in /.amazonq/rules/**/*.md.",
   "mcpServers": {
     "awslabs.aws-documentation-mcp-server": {
       "command": "uvx",
@@ -84,7 +84,8 @@
   "resources": [
     "file://AmazonQ.md",
     "file://README.md",
-    "file://.amazonq/rules/**/*.md"
+    "file://.amazonq/rules/**/*.md",
+    "file://~/mcp/dev/**"
   ],
   "toolsSettings": {},
   "useLegacyMcpJson": true
