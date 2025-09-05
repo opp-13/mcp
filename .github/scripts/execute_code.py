@@ -8,15 +8,39 @@ import requests
 agent_arn = os.environ['AGENT_ARN']
 slack_webhook = os.environ.get('SLACK_WEBHOOK_URL')
 
-# PR 단위로 변경된 파일 가져오기
-try:
-    # GitHub Actions에서 PR의 base와 head 비교
-    base_sha = os.environ.get('GITHUB_BASE_REF', 'main')
-    result = subprocess.run(['git', 'diff', '--name-only', f'origin/{base_sha}...HEAD'], capture_output=True, text=True)
-    changed_files = [f for f in result.stdout.strip().split('\n')
-                     if f.startswith('dev/') and f.endswith('.py')]
-except:
-    changed_files = []
+agent_arn = os.environ['AGENT_ARN']
+slack_webhook = os.environ.get('SLACK_WEBHOOK_URL')
+
+# GitHub Actions 환경에서 변경된 파일 가져오기
+changed_files = []
+
+# GitHub Actions 이벤트에서 변경된 파일 확인
+if os.environ.get('GITHUB_EVENT_NAME') == 'push':
+    try:
+        # push 이벤트의 경우
+        result = subprocess.run(['git', 'diff', '--name-only', 'HEAD^', 'HEAD'],
+                                capture_output=True, text=True)
+        changed_files = result.stdout.strip().split('\n')
+    except:
+        pass
+elif os.environ.get('GITHUB_EVENT_NAME') == 'pull_request':
+    try:
+        # PR 이벤트의 경우
+        result = subprocess.run(['git', 'diff', '--name-only', 'origin/main', 'HEAD'],
+                                capture_output=True, text=True)
+        changed_files = result.stdout.strip().split('\n')
+    except:
+        pass
+
+# 대안: 직접 dev 폴더 스캔
+if not changed_files or changed_files == ['']:
+    print("🔍 Fallback: Scanning dev folder directly")
+    try:
+        import glob
+        changed_files = glob.glob('dev/**/*.py', recursive=True)
+        print(f"📁 Found files in dev folder: {changed_files}")
+    except:
+        changed_files = []
 
 if not changed_files:
     print("No changed Python files in /dev folder")
