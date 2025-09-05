@@ -26,4 +26,4 @@ def create_dev_bucket():
 
 if __name__ == "__main__":
     bucket = create_dev_bucket()
-    print(f"✅ Dev bucket ready: {bucket}") 
+    print(f"✅ Dev bucket ready: {bucket}")
