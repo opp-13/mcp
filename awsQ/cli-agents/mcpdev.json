@@ -1,0 +1,94 @@
+{
+  "$schema": "https://raw.githubusercontent.com/aws/amazon-q-developer-cli/refs/heads/main/schemas/agent-v1.json",
+  "name": "mcp-dev",
+  "description": "mcp 개발용 Agent",
+  "prompt": "You are a Assistant of a dev team who make a MCP Server with MCP Python SDK",
+  "mcpServers": {
+    "awslabs.aws-documentation-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-documentation-mcp-server@latest"
+      ],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR",
+        "AWS_DOCUMENTATION_PARTITION": "aws"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "awslabs.core-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "awslabs.core-mcp-server@latest"
+      ],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": false,
+      "timeout": 120000
+    },
+    "awslabs.code-doc-gen-mcp-server": {
+      "command": "uvx",
+      "args": ["awslabs.code-doc-gen-mcp-server@latest"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "disabled": false,
+      "autoApprove": []
+    },
+    "aws-knowledge-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "mcp-proxy",
+        "--transport",
+        "streamablehttp",
+        "https://knowledge-mcp.global.api.aws"
+      ]
+    },
+    "awslabs.aws-diagram-mcp-server": {
+      "command": "uvx",
+      "args": ["awslabs.aws-diagram-mcp-server"],
+      "env": {
+        "FASTMCP_LOG_LEVEL": "ERROR"
+      },
+      "autoApprove": [],
+      "disabled": false
+    },
+    "awslabs.aws-api-mcp-server": {
+      "command": "uvx",
+      "args": [
+        "awslabs.aws-api-mcp-server@latest"
+      ],
+      "env": {
+        "AWS_REGION": "ap-northeast-2"
+      },
+      "disabled": false,
+      "autoApprove": []
+    }
+  },
+  "tools": [
+    "*"
+  ],
+  "toolAliases": {
+    "read": "fs_read",
+    "write": "fs_write",
+    "run": "execute_bash"
+  },
+  "allowedTools": [
+    "fs_read",
+    "fs_write",
+    "execute_bash",
+    "use_aws",
+    "prompt_understanding"
+  ],
+  "resources": [
+    "file://AmazonQ.md",
+    "file://README.md",
+    "file://.amazonq/rules/**/*.md"
+  ],
+  "hooks": {
+    "beforeChat": "ln -s ./mcp.json ~/.aws/amazonq/mcp.json && ln -s ./rules/rules.md ~/.aws/amazonq/rules/rules.md && ln -s ./cli-agents/mcp-dev.json ~/.aws/amazonq/cli-agents/mcp-dev.json"
+  },
+  "toolsSettings": {},
+  "useLegacyMcpJson": true
+}
