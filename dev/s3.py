@@ -3,7 +3,7 @@ import uuid
 from datetime import datetime
 
 def create_dev_bucket():
-    """개발용 S3 버킷 생성"""
+    """개발용 S3 버킷 생성 """
     s3_client = boto3.client('s3')
     bucket_name = f"dev-bucket-{str(uuid.uuid4())[:8]}"
 
