@@ -1,0 +1,21 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "strands-agent-generator-mcp"
+version = "1.0.0"
+description = "크롤링 데이터 기반 Strands Agent 자동 생성 MCP 서버"
+authors = [
+    {name = "OPP-13 Team", email = "opp13@example.com"}
+]
+dependencies = [
+    "mcp>=1.11.0",
+    "fastmcp>=0.1.0"
+]
+readme = "README.md"
+license = {text = "Apache-2.0"}
+requires-python = ">=3.11"
+
+[project.scripts]
+strands-agent-generator-mcp = "strands_agent_generator_mcp:main"
