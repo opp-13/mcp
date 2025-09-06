@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "gdrive": {
+      "command": "node",
+      "args": ["/root/Q/node_modules/@modelcontextprotocol/server-gdrive/dist/index.js"],
+      "env": {
+        "GDRIVE_CREDENTIALS_PATH": "/root/Q/.gdrive-server-credentials.json",
+        "GOOGLE_APPLICATION_CREDENTIALS": "/root/Q/gcp-oauth.keys.json"
+      }
+    }
+  }
+}
